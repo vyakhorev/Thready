@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MainForm: View</title>
+</head>
+<body>
+<h1>Check my MainForm</h1>
+
+<a href="${request.route_url('item_add')}">Add
+    Item</a>
+<ul>
+    <li tal:repeat="citem items">
+        <a href="${request.route_url('item_view', uid=citem.uid)}">
+                ${citem.name}
+        </a>
+    </li>
+</ul>
+
+
+</body>
+</html>

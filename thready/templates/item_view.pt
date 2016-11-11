@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Item: View</title>
+</head>
+<body>
+<a href="${request.route_url('main')}">
+    Up
+</a> |
+<a href="${request.route_url('item_edit', uid=citem.uid)}">
+    Edit
+</a>
+
+<h1>${citem.name}</h1>
+</body>
+</html>
