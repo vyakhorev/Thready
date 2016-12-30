@@ -4,7 +4,7 @@ import deform.widget
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
 
-#import transaction
+# import transaction
 from thready.models.allmodels import DBSession, cItem
 
 
@@ -12,6 +12,29 @@ class ItemPage(colander.MappingSchema):
     name = colander.SchemaNode(colander.String())
 
 
+class NewForm:
+    def __init__(self, request):
+        self.request = request
+
+    @view_config(route_name='main', renderer='../templates/jinja/main.j2')
+    def hello_form(self):
+        tricky_dict = {'months': ['september',
+                                  'november',
+                                  'december'],
+
+                       'current_month': 'november'
+                       }
+        return tricky_dict
+
+
+    @view_config(route_name='month_view', renderer='../templates/jinja/a_month.j2')
+    def hello_form(self):
+        print(self.request.matchdict)
+        month = self.request.matchdict['month']
+        return dict(month=month)
+
+
+'''
 class cMainForm:
     def __init__(self, request):
         self.request = request
@@ -26,7 +49,7 @@ class cMainForm:
     def reqts(self):
         return self.item_form.get_widget_resources()
 
-    @view_config(route_name='main', renderer='../templates/main.pt')
+    @view_config(route_name='main_old', renderer='../templates/main.pt')
     def main_view(self):
         items = DBSession.query(cItem).order_by(cItem.name).all()
         return dict(title='Main View', items=items)
@@ -93,3 +116,4 @@ class cMainForm:
         )
 
         return dict(item=item, form=form)
+        '''
